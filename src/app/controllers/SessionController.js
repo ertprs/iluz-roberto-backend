@@ -40,15 +40,15 @@ class SessionController {
     }
 
     if(!u && !!c) {
-      user = u
-      token = User.generateToken(u)
-      tipo = 'funcionario'
-    }
-    
-    if(!!u && !c) {
       user = c
       token = Cliente.generateToken(c)
       tipo = 'cliente'
+    }
+    
+    if(!!u && !c) {
+      user = u
+      token = User.generateToken(u)
+      tipo = 'funcionario'
     }
 
     return res.json({ user, token, tipo })
