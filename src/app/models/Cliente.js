@@ -6,6 +6,7 @@ const authConfig = require("../../config/auth");
 const UsuarioSchema = new mongoose.Schema({
     nome: String,
     endereco: String,
+    token: String,
     cep: String,
     bairro: String,
     numero_casa: String,
