@@ -23,7 +23,7 @@ class SessionController {
       return res.status(400).json({ message: 'Senha inválida' })
     }
 
-    return res.json({ user, token: User.generateToken(user), tipo: 'cliente' })
+    return res.json({ user, token: User.generateToken(user), tipo: 'funcionario' })
   }
 
   async by_token(req, res) {
@@ -40,15 +40,15 @@ class SessionController {
     }
 
     if(!u && !!c) {
-      user = c
-      token = Cliente.generateToken(c)
-      tipo = 'cliente'
-    }
-    
-    if(!!u && !c) {
       user = u
       token = User.generateToken(u)
       tipo = 'funcionario'
+    }
+    
+    if(!!u && !c) {
+      user = c
+      token = Cliente.generateToken(c)
+      tipo = 'cliente'
     }
 
     return res.json({ user, token, tipo })
