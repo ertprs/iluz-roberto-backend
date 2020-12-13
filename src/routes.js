@@ -1,10 +1,12 @@
 const routes = require("express").Router();
 const authMiddlewares = require("./app/middlewares/auth");
 
+const controllers = require("./app/controllers");
+
 routes.post("/session", (req, res) => require('./app/controllers/SessionController').store(req,res));
 routes.post("/login-token", (req, res) => require('./app/controllers/SessionController').by_token(req,res));
 routes.post("/session_cli", (req, res) => require('./app/controllers/SessionCliController').store(req,res));
-// routes.use(authMiddlewares);
+routes.use(authMiddlewares);
 
 /**
  * PushNotification
@@ -166,5 +168,15 @@ routes.get('/permissao/:id', (req, res) => require('./app/controllers/PermissaoC
 routes.post('/permissao', (req, res) => require('./app/controllers/PermissaoController').store(req, res))
 routes.put('/permissao/:id', (req, res) => require('./app/controllers/PermissaoController').update(req, res))
 routes.delete('/permissao/:id', (req, res) => require('./app/controllers/PermissaoController').destroy(req, res))
+
+/**
+ * SUPORTE
+ */
+routes.get('/ticket', controllers.TicketController.index)
+routes.get('/ticket/usuario/self', controllers.TicketController.self)
+routes.get('/ticket/:id', controllers.TicketController.show)
+routes.put('/ticket/:id', controllers.TicketController.update)
+routes.post('/ticket', controllers.TicketController.store)
+routes.put('/ticket/:id', controllers.TicketController.update)
 
 module.exports = routes;

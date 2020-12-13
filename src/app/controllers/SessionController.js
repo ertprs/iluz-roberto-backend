@@ -1,4 +1,5 @@
 const User = require('../models/Funcionario')
+const Cliente = require('../models/Cliente')
 
 class SessionController {
   async store (req, res) {
@@ -22,7 +23,7 @@ class SessionController {
       return res.status(400).json({ message: 'Senha inválida' })
     }
 
-    return res.json({ user, token: User.generateToken(user) })
+    return res.json({ user, token: User.generateToken(user), tipo: 'cliente' })
   }
 
   async by_token(req, res) {
@@ -30,12 +31,13 @@ class SessionController {
     const token = req.body.token
 
     let user = await User.findOne({ token: token })
+    let cliente = await Cliente.findOne({ token: token })
 
     if (!user) {
       return res.status(400).json({ message: 'Dispositivo não credenciado' })
     }
 
-    return res.json({ user, token: User.generateToken(user) })
+    return res.json({ user: !user ? cliente : user, token: !user ? Cliente.generateToken(cliente) : User.generateToken(user), tipo: !user ? 'cliente' : 'funcionario' })
   }
 }
 
