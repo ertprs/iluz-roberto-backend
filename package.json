@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "ptklorran",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "bcryptjs": "^2.4.3",
+    "coinbase-commerce-node": "^1.0.3",
+    "cors": "^2.8.5",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment-timezone": "^0.5.27",
+    "mongoose": "^5.6.0",
+    "mongoose-paginate": "^5.0.3",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.2.1",
+    "nodemailer-express-handlebars": "^3.0.0",
+    "require-dir": "^1.2.0",
+    "sendgrid": "^5.2.3",
+    "helmet": "^3.21.2",
+    "node-cron": "^2.0.3"
+  }
+}
