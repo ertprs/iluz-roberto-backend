@@ -27,10 +27,10 @@ class SessionController {
   }
 
   async by_token(req, res) {
-    const token = req.body.token
+    const token_ = req.body.token
 
-    let u = await User.findOne({ token: token })
-    let c = await Cliente.findOne({ token: token })
+    let u = await User.findOne({ token: token_ })
+    let c = await Cliente.findOne({ token: token_ })
     let user = null
     let token = ''
     let tipo = ''
