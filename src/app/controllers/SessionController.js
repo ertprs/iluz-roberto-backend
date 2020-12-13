@@ -39,13 +39,13 @@ class SessionController {
       return res.status(400).json({ message: 'Dispositivo não credenciado' })
     }
 
-    if(!user && !!cliente) {
+    if(!u && !!c) {
       user = c
       token = Cliente.generateToken(c)
       tipo = 'cliente'
     }
     
-    if(!!user && !cliente) {
+    if(!!u && !c) {
       user = u
       token = User.generateToken(u)
       tipo = 'funcionario'
