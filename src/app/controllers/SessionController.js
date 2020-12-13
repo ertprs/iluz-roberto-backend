@@ -41,13 +41,13 @@ class SessionController {
 
     if(!user && !!cliente) {
       user = c
-      token = Cliente.generateToken(cliente)
+      token = Cliente.generateToken(c)
       tipo = 'cliente'
     }
     
     if(!!user && !cliente) {
       user = u
-      token = User.generateToken(cliente)
+      token = User.generateToken(u)
       tipo = 'funcionario'
     }
 
