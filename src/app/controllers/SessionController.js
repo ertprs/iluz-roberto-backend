@@ -29,14 +29,29 @@ class SessionController {
   async by_token(req, res) {
     const token = req.body.token
 
-    let user = await User.findOne({ token: token })
-    let cliente = await Cliente.findOne({ token: token })
+    let u = await User.findOne({ token: token })
+    let c = await Cliente.findOne({ token: token })
+    let user = null
+    let token = ''
+    let tipo = ''
 
-    if (!user && !cliente) {
+    if (!u && !c) {
       return res.status(400).json({ message: 'Dispositivo não credenciado' })
     }
 
-    return res.json({ user: !!user ? cliente : user, token: !user ? Cliente.generateToken(cliente) : User.generateToken(user), tipo: !!user ? 'cliente' : 'funcionario' })
+    if(!user && !!cliente) {
+      user = c
+      token = Cliente.generateToken(cliente)
+      tipo = 'cliente'
+    }
+    
+    if(!!user && !cliente) {
+      user = u
+      token = User.generateToken(cliente)
+      tipo = 'funcionario'
+    }
+
+    return res.json({ user, token, tipo })
   }
 }
 
