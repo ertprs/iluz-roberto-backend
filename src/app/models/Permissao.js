@@ -13,7 +13,9 @@ const schema = new mongoose.Schema({
     contrato: Boolean,
     financeiro: Boolean,
     posvenda: Boolean,
-    permissao: Boolean
+    permissao: Boolean,
+    atendimento_ao_cliente: Boolean,
+    orcamento: Boolean
 })
 
 module.exports = mongoose.model('permissao', schema)
